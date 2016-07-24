@@ -1,0 +1,1 @@
+app.value('API_URL', '/api/webforms')

@@ -1,0 +1,46 @@
+<div id='completedCompetencyAssessment' class="rightTabOne"  ng-controller="CompletedCompetencyAssessmentCtrl">
+  <form  ng-submit="save()" name="KPI">
+  <div  class="rightTabOneHeading">
+    Completed the Competency Assessment
+  </div>
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 clabsiInnerMain clabsiInnerMainOne">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 noClabsiOne">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 noClabsiInputs">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 clabsiInputsDiv" >
+          <label>Date</label>
+          <input class="" type="date" ng-model="completedCompetencyAssessment.date" required="required">
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 clabsiInputsDiv" >
+          <label>MRN</label>
+          <select ng-model="completedCompetencyAssessment.mrn">
+            <option>Select MRN</option>
+          </select>
+        </div>              
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 clabsiInputsDiv" >
+          <label>Staff Category </label>
+          <select ng-model="completedCompetencyAssessment.categories" required="required">
+            <option ng-repeat="category in categories" >{{category}}</option>
+
+          </select>
+        </div>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 clabsiInputsDiv" >
+          <label>Assessment</label>
+          <select ng-model="completedCompetencyAssessment.assessment" required="required">
+            <option ng-repeat="assessment in assessments">{{assessment}}</option>
+          </select>
+        </div>
+        <div class="clearfix"></div>
+      </div>    
+      <div class="clearfix"></div>
+    </div>
+
+    <div class="clearfix"></div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 noClabsiInputs">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 clabsiInputsDiv noClabsiBtn">
+        <button ng-click="save()">Save</button>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</form>
+</div>

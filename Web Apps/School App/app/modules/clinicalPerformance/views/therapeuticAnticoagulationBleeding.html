@@ -1,0 +1,36 @@
+<div id ='AnticoagulationBleeding' class="rightTabOne"  ng-controller="therapeuticAnticoagulationBleedingCtrl">
+  <form  ng-submit="save()" name="KPI"> 
+  <div  class="rightTabOneHeading">
+    % of PE/DVT pt on therapeutic anticoagulation with bleeding as a complication 
+  </div>
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 clabsiInnerMain clabsiInnerMainOne">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 noClabsiOne">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 noClabsiInputs">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 clabsiInputsDiv" >
+          <label>MRN: </label><input type="text" ng-model="AnticoagulationBleeding.mrn" required="required">
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 clabsiInputsDiv" >
+          <label>Date</label>
+          <input class="" type="date" ng-model="AnticoagulationBleeding.date" required="required">
+        </div>
+       <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 clabsiInputsDiv" >
+          <label>total no of  PE/DVT pt: </label><input type="text" ng-model="AnticoagulationBleeding.anticoagulation" required="required">
+       </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 clabsiInputsDiv" >
+          <label>No of PE/DVT pt: </label><input type="text" ng-model="AnticoagulationBleeding.noOfPePt" required="required">
+        </div>
+        <div class="clearfix"></div>
+      </div>    
+      <div class="clearfix"></div>
+    </div>
+
+    <div class="clearfix"></div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 noClabsiInputs">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 clabsiInputsDiv noClabsiBtn">
+        <button ng-click="save()">Save</button>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</form>
+</div>

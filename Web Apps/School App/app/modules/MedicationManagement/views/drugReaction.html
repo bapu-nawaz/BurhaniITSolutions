@@ -1,0 +1,60 @@
+<div id='drugReaction' class="rightTabOne"  ng-controller="drugReactionCtrl">
+  <form  ng-submit="save()" name="KPI">
+  <div  class="rightTabOneHeading">
+    Rate of Adverse Drug  Reaction
+  </div>
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 clabsiInnerMain clabsiInnerMainOne">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 noClabsiOne">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 noClabsiInputs">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 clabsiInputsDiv" >
+          <label>Date</label>
+          <input class="" type="date" ng-model="drugReaction.date" required="required">
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 clabsiInputsDiv" >
+          <label>Building</label>
+          <select ng-model="drugReaction.buildings" required="required">
+            <option ng-repeat='building in buildings'>{{building}}</option>
+          </select>
+        </div>              
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 clabsiInputsDiv" >
+          <label>Staff Category</label>
+          <select ng-model="drugReaction.categories" required="required">
+            <option ng-repeat='category in categories'>{{category}}</option>
+          </select>
+        </div>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 clabsiInputsDiv" >
+          <label>Outcome Category</label>
+          <select ng-model="drugReaction.outcomes" required="required">
+            <option ng-repeat='outcome in outcomes'>{{outcome}}</option>
+          </select>
+        </div>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 clabsiInputsDiv" >
+          <label>Stage Of Error</label>
+          <select ng-model="drugReaction.errorStage" required="required">
+            <option ng-repeat='errorStage in errorStages'>{{errorStage}}</option>
+          </select>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 clabsiInputsDiv" >
+          <label>Physician:</label><input type="text" ng-model="drugReaction.physician" required="required">
+       </div>
+       <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 clabsiInputsDiv" >
+          <label>Nurse:</label><input type="text" ng-model="drugReaction.nurse" required="required">
+       </div>
+       <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 clabsiInputsDiv" >
+          <label>Pharmacist:</label><input type="text" ng-model="drugReaction.pharmacist" required="required">
+       </div>
+        <div class="clearfix"></div>
+      </div>    
+      <div class="clearfix"></div>
+    </div>
+
+    <div class="clearfix"></div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 noClabsiInputs">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 clabsiInputsDiv noClabsiBtn">
+        <button ng-click="save()">Save</button>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</form>
+</div>

@@ -1,0 +1,16 @@
+{
+  "name": "healthcare",
+  "description": "",
+  "version": "1.0.1",
+  "homepage": "https://github.com/angular/angular-seed",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "latest",
+    "angular-bootstrap":"latest",
+    "angular-ui-router": "latest",
+    "angular-loading-bar": "0.7.1",
+    "bootstrap":"latest",
+    "underscore":"latest"
+  }
+}

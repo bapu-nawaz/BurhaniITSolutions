@@ -1,0 +1,35 @@
+<div id = "NCF" class="rightTabOne"  ng-controller="NETCASHFLOWCtrl">
+  <form  ng-submit="save()" name="KPI">
+  <div  class="rightTabOneHeading">
+    Net Cash Flow
+  </div>
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 clabsiInnerMain clabsiInnerMainOne">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 noClabsiOne">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 noClabsiInputs">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 clabsiInputsDiv" >
+          <label>Date</label>
+          <input class="" type="date" ng-model="NCF.date" required>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 clabsiInputsDiv" >
+          <label>Inflow</label>
+          <input class="" type="number" ng-model="NCF.inflow" required>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 clabsiInputsDiv">
+          <label>Outflow</label>
+          <input class="" type="number" ng-model="NCF.outflow" required>
+        </div>
+        <div class="clearfix"></div>
+      </div>    
+      <div class="clearfix"></div>
+    </div>
+
+    <div class="clearfix"></div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 noClabsiInputs">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 clabsiInputsDiv noClabsiBtn">
+        <button ng-click="save()">Save</button>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</form>
+</div>

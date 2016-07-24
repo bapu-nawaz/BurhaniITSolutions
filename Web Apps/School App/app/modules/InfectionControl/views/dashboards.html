@@ -1,0 +1,52 @@
+
+<div class="headerMain innerHeader">
+  <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12 headerICU" ng-class="{headerMargin: showMenu}">ICU</div>
+  <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 dateMain">
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 dateDay form-group">
+      <select class="form-control" id="sel1">
+        <option selected="Day">Day</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+      </select>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 dateMonth form-group">
+      <select class="form-control" id="sel1">
+        <option selected="Month">Month</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+      </select>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 dateYear form-group">
+      <select class="form-control" id="sel1">
+        <option selected="Year">Year</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+      </select>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+  <div class="clearfix"></div>
+</div>
+<div style="height: 150px;"></div>
+<section class="clabsi" ng-class="{bodyMargin: showMenu}" ng-include="'app/modules/InfectionControl/views/clabsi.html'"></section>
+</section>
+<section class="cauti" ng-class="{bodyMargin: showMenu}" ng-include="'app/modules/InfectionControl/views/cauti.html'"></section>
+</section>
+<section class="cvc" ng-class="{bodyMargin: showMenu}" ng-include="'app/modules/InfectionControl/views/cvc.html'"></section>
+</section>
+<section class="ucu" ng-class="{bodyMargin: showMenu}" ng-include="'app/modules/InfectionControl/views/ucu.html'"></section>
+</section>
+<section class="ucu" ng-class="{bodyMargin: showMenu}" ng-include="'app/modules/InfectionControl/views/vap.html'"></section>
+</section>
+<section class="vur" ng-class="{bodyMargin: showMenu}" ng-include="'app/modules/InfectionControl/views/vur.html'"></section>
+<section class="vur" ng-class="{bodyMargin: showMenu}" ng-include="'app/modules/InfectionControl/views/vaccination.html'"></section>
+<section class="handHygeine" ng-class="{bodyMargin: showMenu}" ng-include="'app/modules/InfectionControl/views/handHygeine.html'"></section>
+<section class="handSanitizer" ng-class="{bodyMargin: showMenu}" ng-include="'app/modules/InfectionControl/views/HandSanitizer.html'"></section>
+<section class="handSanitizer" ng-class="{bodyMargin: showMenu}" ng-include="'app/modules/InfectionControl/views/FluidExposure.html'"></section>
+</section>

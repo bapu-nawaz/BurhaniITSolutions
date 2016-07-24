@@ -1,0 +1,200 @@
+@charset "utf-8";
+/* CSS Document */
+*{ margin:0px; outline:none; resize:none; list-style:none; padding:0px; }
+ul{padding:0; margin:0;}
+a:hover, a:focus{ text-decoration:none !important; outline:none;}
+a, button{ cursor:pointer;}
+
+.headerTop{ height: 100px; width: 100%; position: fixed; z-index: 999; }
+.headerMain{background:#395F78;}
+.headerICU{color:#fff; font-family:'Open Sans'; line-height: 75px; font-weight:400; font-size:30px; padding:15px; left: 35px; z-index: 1000;}
+.dateMain{
+    text-align: right;
+    float: Right;
+    margin-top: 35px;
+    padding-right: 15px;
+    z-index: 1000;
+    display:none;
+}
+.dateDay select, .dateMonth select, .dateYear select{height:30px;}
+.dateDay , .dateMonth , .dateYear{padding-right:0;}
+.clabsiHeader:hover{
+    background: #2f88f0; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#2f88f0, #2fc8f9); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#2f88f0, #2fc8f9); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#2f88f0, #2fc8f9); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#2f88f0, #2fc8f9); /* Standard syntax */; 
+    height:70px;
+    color:#fff;
+}
+.clabsiHeader{height:70px; background:#fafafa; color:#303030; font-family:'Open Sans'; font-weight:100; font-size:40px; line-height:70px; float: left; text-transform:uppercase; width: 100%;}
+.clabsiText{text-transform:uppercase;}
+.down-icon{
+    padding-left:20px;
+    float: left;
+    top: 20px;
+    font-size: 30px;
+    color:#fff;
+}
+.noClabsiText{color:#303030; font-family:'Open Sans'; font-weight:100; font-size:16px; top: 40px;}
+.noClabsiInputs input, .noClabsiInputs select{width:80%; height:40px; line-height:40px; padding: 0 8px; vertical-align: top;}
+.noClabsiOne, .noClabsiTwo{padding:0;} 
+.clabsiInnerMain{padding: 30px 15px; border-color:#ccc; float:none !important;  border-bottom:1px solid #ccc; border-top: 1px solid #ccc;}
+.noClabsiInputs label{ display: block; color: #303030; font-family: 'Open Sans'; font-weight: 400; font-size: 14px; padding-right: 2%;}
+.clabsiInputsDiv{text-align:left; margin-bottom:15px; }
+.noClabsiBtn{ margin-bottom: 0px !important; }
+.noClabsiBtn button{ padding: 8px 15px; color:#fff; font-family:'Open Sans'; font-weight:400; font-size:16px; background: #395F78; float: right; width: 120px; margin-right: 7px;}
+.noClabsiTwo{padding:10px 0;}
+.patientMain{border:1px solid #cccccc; height:200px; padding: 0;}
+.patientIDmain{color:#303030; font-family:'Open Sans'; font-weight:400; font-size:20px; padding:10px 0 10px 15px; }
+input.patientIDmain {
+    border-bottom: 1px solid #ccc;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    width:100%; 
+}
+.plus-icon{right: 10px; top: 17px; position: absolute; cursor:pointer;}
+.clabsiMain{border:1px solid #ccc;}
+.clabsi{margin: 25px;}
+.clabsiMainTwo{border-top:none !important;}
+.clabsiTextTwo{text-transform:none;}
+.tabsCautiMain{font-family:'Open Sans'; font-weight:100; font-size:30px; line-height: 70px; position: absolute;
+left: 60px; float: left; }
+.cautiTabOne{cursor:pointer; border:1px solid #ccc; box-shadow:none; border-radius:0; margin-bottom:0;}
+.cautiTabMain{padding:0; border:none; border-color: #ccc !important;}
+.cautiHeader{height:70px; background:#fafafa; position:relative;}
+.cautiHeader:hover{
+    background: #2f88f0; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#2f88f0, #2fc8f9); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#2f88f0, #2fc8f9); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#2f88f0, #2fc8f9); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#2f88f0, #2fc8f9); /* Standard syntax */; 
+    color:#fff;
+}
+.tabsDownIcon{
+    padding-left:20px;
+    float: left;
+    top: 20px;
+    font-size: 30px;
+    color:#000;
+    
+}
+.tabsDownIcon:before{
+    
+    }
+.tabsDownIcon:after{
+    
+    }
+    
+.collapsed .tabsMain:before{    
+    position:absolute;
+    top: 25px;
+    left: 0;
+    font-size: 24px;
+    padding-left: 20px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    content: "\e258";
+}
+.tabsMain:before{   
+    position:absolute;
+    top: 25px;
+    left: 0;
+    font-size: 24px;
+    padding-left: 20px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    content: "\e259";
+}
+.panelTabMain{box-shadow:none; border-radius:0 !important; margin-bottom:0; border-color:#ccc; border-bottom:none; margin-top:0 !important;}
+.cautiHeader {cursor:pointer;}
+.accordian-main{border: 1px solid #ccc;
+    border-right: none;
+    border-left: none;
+    border-top: none;}
+
+.clabsiInnerMain:nth-child(2) {border:none;}
+.cautiHeaderTwo{border-bottom:1px solid #ccc;}
+.clabsiInnerMainTwo{border-top:none !important;}
+.clabsiInnerMainOne{border-bottom:none !important; padding-left:0; padding-right:0;}
+.patientInnerBox{position:relative; height:35px; width:100px; background:#6fc6ff; text-align:center; color:#fff; font-family:'Open Sans'; font-weight:100; font-size:16px; line-height: 35px; margin: 5px; padding-right: 15px;}
+.minusSign{color:#d6d6d6; right:8px; top:-2px;}
+.btnRadius{
+    border-radius: 100%;
+    width: 20px;
+    height: 25px;
+    border: 1px solid #cbcccc;
+    position:absolute;
+    top: 5px;
+    right: 2px;
+    background:#fff;
+}
+.patientInnerBox p{margin:0; padding-right:15px;}
+
+/*Left Tab*/
+
+.tabLeftMain{width:250px; height:100%; position:fixed; border-right:1px solid #ccc; background: #e9eff3; /* For browsers that do not support gradients */
+color:#395F77; z-index: 1000; top:0; overflow-y: auto;  overflow-x: hidden;}
+.tabLeftContent{font-family: 'Open Sans'; font-size:16px; color:#0f284b; line-height:40px; border-bottom:1px solid #ccc; padding-left: 14px; background: #fafafa; position: relative; cursor:pointer;}
+.tabLeftContent i{ display:none; color: #fff; position: absolute; top: 10px; right: 10px; font-size: 20px;}
+.tabLeftContent:hover, .selectedTabLeft{
+    background: #e9eff3; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#d9e3e7, #c4d7dd); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#d9e3e7, #c4d7dd); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#d9e3e7, #c4d7dd); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#d9e3e7, #c4d7dd); /* Standard syntax */; 
+    color:#fff;
+}
+.tabLeftContent:hover i, .selectedTabLeft i{ display:inline-block;}
+.tabLeftContentLast{border-bottom:none;}
+
+
+/*End*/
+
+/*New changes*/
+
+.tabLeftMain .firstList li a{font-family: 'Open Sans'; font-size:12px; color:#395F77; text-transform:uppercase; font-weight:600; }
+.tabLeftMain .secondList li{ padding-left:10px; }
+.tabLeftMain .secondList li a{font-family: 'Open Sans'; font-size:10px; color:#b7ab6d; font-weight:400;}
+.firstList{padding:15px 15px 0 15px;}
+.tabLeftMain .firstList li a:hover,.tabLeftMain .secondList li a:hover {color:#b7ab6d; text-decoration: underline !important;}
+.ice-logo img{width:240px; padding: 15px 15px 0 15px;}
+.rightTabOneHeading{color:#395F77; font-family:'Open Sans'; font-weight:400; font-size:24px; position: absolute; top: -18px; left: 15px;  background: #fff; border: none; padding-right: 5px; padding-left: 5px;}
+.rightTabOne{position: relative; border: 1px solid #ccc; margin-top:25px;}
+
+/*End*/
+
+i.menuIcon{
+    position: fixed;
+    color: #FFF;
+    padding: 30px 0 0 5px;
+    margin: 10px;
+    font-size: 20px;
+    z-index: 1000;
+    top: 5px;
+}
+.headerMargin{
+    margin-left: 40px;
+    left: 250px;
+}
+.bodyMargin{ margin: 25px 25px 0 275px; }
+
+.innerHeader{ position: fixed; top: 0; width: 100%; z-index: 999; }
+/*Home page*/
+.home_background{background-color: #fcfcfc;}
+.center-div{position: absolute;margin: auto;top: 0;right: 0;bottom: 0;left: 0;width: 200px;height: 100px;background-color: #ccc;border-radius: 3px;}
+.home_heading{text-align: center;vertical-align: middle;line-height: 50px;}
+
+/*Result field*/
+.resultField{left :150px; bottom: 50px;}

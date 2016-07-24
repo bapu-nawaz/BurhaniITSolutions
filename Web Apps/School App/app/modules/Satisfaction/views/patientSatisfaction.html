@@ -1,0 +1,54 @@
+<div id='patientSatisfaction' class="rightTabOne"  ng-controller="PatientSatisfactionCtrl">
+  <form  ng-submit="save('Patient_Satisfaction')" name="KPI">
+  <div  class="rightTabOneHeading">
+    Patient Satisfaction
+  </div>
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 clabsiInnerMain clabsiInnerMainOne">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 noClabsiOne">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 noClabsiInputs">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 clabsiInputsDiv" >
+          <label>Date</label>
+          <input class="" type="date" ng-model="patientSatisfaction.formdate" required>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 clabsiInputsDiv" >
+          <label>Building</label>
+          <select ng-model="patientSatisfaction.buildings" required="required">
+            <option > Select building </option>
+            <option ng-repeat="building in kpi.buildings()" >{{building}}</option>
+          </select>
+        </div>              
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 clabsiInputsDiv" >
+          <label>Department</label>
+          <select ng-model="patientSatisfaction.deparment" required="required">
+             <option > Select department </option>
+            <option ng-repeat="department in kpi.departments()" >{{department}}</option>
+          </select>
+        </div>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 clabsiInputsDiv" >
+          <label>Item</label>
+          <select ng-model="patientSatisfaction.items" required="required">
+             <option> Select item </option>
+            <option ng-repeat="item in kpi.items()" >{{item}}</option>
+          </select>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 clabsiInputsDiv" >
+          <label>Sum Of Score:</label><input type="text" ng-model="patientSatisfaction.score" required>
+       </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 clabsiInputsDiv" >
+          <label>Scale Score:</label><input type="text" ng-model="patientSatisfaction.scaleScore" required>
+       </div>
+        <div class="clearfix"></div>
+      </div>    
+      <div class="clearfix"></div>
+    </div>
+
+    <div class="clearfix"></div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 noClabsiInputs">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 clabsiInputsDiv noClabsiBtn">
+        <button >Save</button>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</form>
+</div>
