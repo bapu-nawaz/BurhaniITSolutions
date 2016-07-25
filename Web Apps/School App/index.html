@@ -10,31 +10,26 @@
     <link rel='stylesheet' href='/libs/angular-loading-bar/build/loading-bar.min.css' type='text/css' media='all' />
     <script src="/assets/js/jquery-1.11.3.min.js" type="text/javascript"></script>
     <script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
-    <title>HealthCare</title>
+    <title>School App</title>
 
   </head>
   <body ng-init="showMenu='false'">
+<!--     
     <div class="headerTop headerMain"></div>
     <header ng-include="'include/header.html'"></header>
     <i class="glyphicon glyphicon-menu-hamburger menuIcon" ng-click="showMenu=!showMenu" ng-class="{headerMargin: showMenu}"></i>
-
+-->
     <div ui-view autoscroll="true"></div>
-
+<!-- 
     <footer>
-      <div class="footerRight">&copy;</div> <!--<script>document.write(new Date().getFullYear())</script> Cedar College-->
-    
-      <a href="http://www.riksof.com">
+        <div class="footerRight">&copy;</div> 
         <div class="footerLeft">
-          <!-- <img src="images/riksof-20.png"> -->
-          <div class="footerLeftChild">
-            <div class="leftChildLine1">  Developed by RIKSOF</div>
+        <div class="footerLeftChild">
+            <div class="leftChildLine1">  Developed by BITS</div>
             <div id="versionDetail" class="leftChildLine2" ></div>
         </div>
-      </a>
-
-
     </footer>
-
+ -->
     <script src="/libs/angular/angular.min.js"></script>
     <script src="/libs/angular-bootstrap/ui-bootstrap.min.js"></script>
     <script src="/libs/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
@@ -57,71 +52,8 @@
     <script src='app/modules/InfectionControl/controllers/FluidExposure.js'></script>
     <script src='app/modules/InfectionControl/controllers/vaccination.js'></script>
     <script src='app/modules/InfectionControl/controllers/handHygeine.js'></script>
-    <script src='app/modules/BloodProduct/controllers/BloodProduct.js'></script>
-    <script src='app/modules/BloodProduct/controllers/UtilizationBloodUnit.js'></script>
-    <script src='app/modules/BloodProduct/controllers/WaistedBloodUnit.js'></script>
-    <script src='app/modules/BloodProduct/controllers/RateofAdverseTransfusionReaction.js'></script>
-    <script src='app/modules/FinancialManagement/controller/FinancialManagement.js'></script>
-    <script src='app/modules/BloodProduct/controllers/CrossedMatchTransfusionRatio.js'></script>
-    <script src='app/modules/QIPS/controllers/QIPS.js'></script>
-    <script src='app/modules/QIPS/controllers/PatientInPain.js'></script>
-    <script src='app/modules/QIPS/controllers/selfExtubation.js'></script>
-    <script src='app/modules/QIPS/controllers/PatientScreened.js'></script>
-    <script src='app/modules/QIPS/controllers/RateAdverseEvents.js'></script>
-    <script src='app/modules/QIPS/controllers/complianceVerbalOrder.js'></script>
-    <script src='app/modules/QIPS/controllers/closedOVR.js'></script>
-    <script src='app/modules/QIPS/controllers/patientUndesirableWeightChange.js'></script>
-    <script src='app/modules/QIPS/controllers/patientAssessment.js'></script>
-    <script src='app/modules/QIPS/controllers/bloodCultureContaminationRate.js'></script>
-    <script src='app/modules/QIPS/controllers/highAlertMedications.js'></script>
-    <script src='app/modules/QIPS/controllers/PatientFalls.js'></script>
-    <script src='app/modules/QIPS/controllers/pressureUlcers.js'></script>
-    <script src='app/modules/QIPS/controllers/completenessOfMedicalRecords.js'></script>
-    <script src='app/modules/QIPS/controllers/rejectedSpecimens.js'></script>
-    <script src='app/modules/QIPS/controllers/patientsProperlyIdentified.js'></script>
-    <script src='app/modules/FinancialManagement/controller/HOProfitBed.js'></script>
-    <script src='app/modules/FinancialManagement/controller/LiquidityRatio.js'></script>
-    <script src='app/modules/FinancialManagement/controller/CostPerDischarge.js'></script>
-    <script src='app/modules/FinancialManagement/controller/ActualAndBudgetedPatientDays.js'></script>
-    <script src='app/modules/FinancialManagement/controller/AccountsReceivable.js'></script>
-    <script src='app/modules/FinancialManagement/controller/Revenue.js'></script>
-    <script src='app/modules/FinancialManagement/controller/EBITDA.js'></script>
-    <script src='app/modules/FinancialManagement/controller/GrossProfit.js'></script>
-    <script src='app/modules/FinancialManagement/controller/NetCashFlow.js'></script>
-    <script src='app/modules/FinancialManagement/controller/ActualAndTargetedRevenue.js'></script>
-    <script src='app/modules/clinicalPerformance/controllers/clinicalPerformance.js'></script>    
-    <script src='app/modules/clinicalPerformance/controllers/successfulCardioPulmonaryResuscitation.js'></script> 
-    <script src='app/modules/clinicalPerformance/controllers/unexpectedMortalityICU.js'></script>
-    <script src='app/modules/clinicalPerformance/controllers/standardizedMortality.js'></script>
-    <script src='app/modules/clinicalPerformance/controllers/ardsMortality.js'></script>
-    <script src='app/modules/clinicalPerformance/controllers/nosocomialClosterium.js'></script>
-    <script src='app/modules/clinicalPerformance/controllers/rateOfDocumentedPEDVT.js'></script>
-    <script src='app/modules/clinicalPerformance/controllers/complicationHITPatients.js'></script>
-    <script src='app/modules/clinicalPerformance/controllers/complianceAdmission.js'></script>
-    <script src='app/modules/clinicalPerformance/controllers/septicShock.js'></script>
-    <script src='app/modules/clinicalPerformance/controllers/complianceSepsis.js'></script>
-    <script src='app/modules/clinicalPerformance/controllers/complianceLungs.js'></script>
-    <script src='app/modules/clinicalPerformance/controllers/complianceHypothermia.js'></script>
-    <script src='app/modules/clinicalPerformance/controllers/therapeuticAnticoagulation.js'></script>
-    <script src='app/modules/clinicalPerformance/controllers/therapeuticAnticoagulationBleeding.js'></script>
-    <script src='app/modules/clinicalPerformance/controllers/heparineThrompothytopenia.js'></script>
-    <script src='app/modules/clinicalPerformance/controllers/baselineGcs.js'></script>
-    <script src='app/modules/HumanResource/controllers/HumanResource.js'></script>
-    <script src='app/modules/HumanResource/controllers/completedTheCompetencyAssessment.js'></script>
-    <script src='app/modules/HumanResource/controllers/employeeSatisfaction.js'></script>
-    <script src='app/modules/Supplies/controllers/Supplies.js'></script>
-    <script src='app/modules/MedicationManagement/controllers/MedicationManagement.js'></script>
-    <script src='app/modules/HumanResource/controllers/satisfactoryCompetencyAssessment.js'></script>
-    <script src='app/modules/HumanResource/controllers/trainingInvestment.js'></script>
-    <script src='app/modules/HumanResource/controllers/budgetDiscrepancy.js'></script>
-    <script src='app/modules/Supplies/controllers/LeadTimeForDelivery.js'></script>
-    <script src='app/modules/Satisfaction/controllers/Satisfaction.js'></script>
-    <script src='app/modules/Satisfaction/controllers/patientSatisfaction.js'></script>
-    <script src='app/modules/MedicationManagement/controllers/unjustifiableAB.js'></script>
-    <script src='app/modules/MedicationManagement/controllers/drugReaction.js'></script>
-
+    <script src='app/modules/login/controllers/loginCtrl.js'></script>
     <!-- MODELS -->
-    <script src='app/models/icu.js'></script>
     <script src='app/models/kpi.js'></script>
 
     <!-- SERVICES -->
