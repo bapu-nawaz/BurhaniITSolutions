@@ -7,9 +7,25 @@
  * # MainCtrl
  * Controller of yapp
  */
-angular.module('yapp')
-  .controller('DashboardCtrl', function($scope, $state) {
+app.controller('DashboardCtrl', ['$scope', '$state', 'Children', 
+	function($scope, $state, Children) {
 
-    $scope.$state = $state;
+	    /* VARIABLE DECLARATIONS */
+	    $scope.$state = $state;
+	    $scope.childName = '';
+	    $scope.children = new Array();
 
-  });
+		/* FUNCTION DEFINITIONS */
+	    $scope.fetchChildren = function () {
+	    	$scope.children.push(new Children("Asif Ali Khan"));
+	    	$scope.children.push(new Children("Zahid Ali Khan"));
+	    	$scope.children.push(new Children("Kulsoom Ali Khan"));
+	    }
+
+	    $scope.childClicked = function(param) {
+	    	alert("You selected "+param);
+	    }
+
+	    $scope.fetchChildren();
+	}
+]);

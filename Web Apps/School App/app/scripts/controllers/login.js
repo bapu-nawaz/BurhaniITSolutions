@@ -7,8 +7,8 @@
  * # MainCtrl
  * Controller of yapp
  */
-angular.module('yapp')
-  .controller('LoginCtrl', function($scope, $location) {
+app.controller('LoginCtrl', ['$scope', '$location', 
+    function($scope, $location) {
 
   	$scope.lg = {"email": "", "pass": ""};
 
@@ -23,4 +23,4 @@ angular.module('yapp')
       	return false;
     }
 
-  });
+  }]);
