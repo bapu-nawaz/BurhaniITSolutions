@@ -8,8 +8,7 @@
  *
  * Main module of the application.
  */
-angular
-  .module('yapp', [
+var app = angular.module('yapp', [
     'ui.router',
     'ngAnimate'
   ])

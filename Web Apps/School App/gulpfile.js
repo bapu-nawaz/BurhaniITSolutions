@@ -88,7 +88,7 @@ gulp.task('connect', ['styles'], function() {
     .use(serveIndex('app'));
 
   require('http').createServer(app)
-    .listen(9000)
+    .listen(3001)
     .on('listening', function() {
       console.log('Started connect web server on http://localhost:9000');
     });
@@ -96,8 +96,10 @@ gulp.task('connect', ['styles'], function() {
 
 gulp.task('serve', ['wiredep', 'connect', 'fonts', 'watch'], function() {
   if (argv.open) {
-    require('opn')('http://localhost:9000');
+    console.log("YES");
+    require('opn')('http://192.168.1.103:3001');
   }
+    console.log("NO");
 });
 
 gulp.task('test', function(done) {
@@ -159,4 +161,8 @@ gulp.task('docs', [], function() {
   return gulp.src('app/scripts/**/**')
     .pipe($.ngdocs.process())
     .pipe(gulp.dest('./docs'));
+});
+
+gulp.task('nawaz', function() {
+  console.log("Nawaz Bhai");
 });

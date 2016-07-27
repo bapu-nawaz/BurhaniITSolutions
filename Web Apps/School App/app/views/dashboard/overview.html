@@ -1,29 +1,29 @@
-<div ng-init="childClicked=false">
+<div>
 	<a ui-sref="reports" class="pull-right btn btn-primary btn-outline btn-rounded">Complains</a>
-	<h2>Dashboard <small>Here you will see the list of your children registered in our school system.</small></h2>
+	<h2>Dashboard<br/><small>Here you will see the list of your children registered in our school system.</small></h2>
 	<div class="jumbotron">
 		<div class="container">
 			<h1>Welcome!<br/>Mr/Mrs [Parent Name]</h1>
-			[list of students under this email]
+			&nbsp;
 			<table class="table">
 				<thead>
 					<td>Student Name</td>
 					<td>Actions</td>
 				</thead>
 				<tbody>
-					<tr>
-						<td>XYZ</td>
-						<td ng-click="childClicked=true"><i class="glyphicon glyphicon-pencil"></i></td>
-					</tr>
-					<tr>
-						<td>XYZ</td>
-						<td ng-click="childClicked=true">Edit</td>
+					<tr ng-repeat="child in children" data-ng-click="$parent.childName = child">
+						<td>{{child.name}}</td>
+						<td><i class="glyphicon glyphicon-pencil"></i></td>
 					</tr>
 				</tbody>
 			</table>
 			<br /><br />
-			<p ng-show="childClicked">
-				<a class="btn btn-primary btn-lg btn-outline btn-rounded" ng-click="childClicked=false">Hide Me</a>
+			<p ng-show="childName!=''">
+				<small>Options for {{childName.name}}</small><br/><br/>
+				<a class="btn btn-primary btn-lg btn-outline btn-rounded" ng-click="childClicked('Home Work'); childName=''">Home Work</a>
+				<a class="btn btn-primary btn-lg btn-outline btn-rounded" ng-click="childClicked('Attendance'); childName=''">Attendance</a>
+				<a class="btn btn-primary btn-lg btn-outline btn-rounded" ng-click="childClicked('Fees'); childName=''">Fees</a>
+				<a class="btn btn-primary btn-lg btn-outline btn-rounded" ng-click="childClicked('Application'); childName=''">Application</a>
 			</p>
 		</div>
 	</div>
