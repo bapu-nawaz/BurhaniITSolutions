@@ -3,9 +3,9 @@
 	<h2>Dashboard<br/><small>Here you will see the list of your children registered in our school system.</small></h2>
 	<div class="jumbotron">
 		<div class="container">
-			<h1>Welcome!<br/>Mr/Mrs [Parent Name]</h1>
+			<h1>Welcome!<br/>Mr/Mrs {{userData.name}}</h1>
 			&nbsp;
-			<table class="table">
+			<table class="table" ng-hide="error.status">
 				<thead>
 					<td>Student Name</td>
 					<td>Actions</td>
@@ -17,6 +17,7 @@
 					</tr>
 				</tbody>
 			</table>
+			<div ng-show="error.status" class="errorMessage"><i class="glyphicon glyphicon-info-sign errorMessageIcon"></i> {{error.message}}</div>
 			<br /><br />
 			<p ng-show="childName!=''">
 				<small>Options for {{childName.name}}</small><br/><br/>

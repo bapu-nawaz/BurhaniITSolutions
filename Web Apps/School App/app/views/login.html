@@ -18,6 +18,7 @@ Inspired by http://dribbble.com/shots/917819-iPad-Calendar-Login?list=shots&sort
 						<input type="password" class="form-control input-underline input-lg" id="" placeholder="Password" ng-class="{error: submitted && loginForm.loginPassword.$invalid}" ng-model="lg.pass" name="loginPassword" required>
 					</div>
 				</div>
+				<div class="responseStatus" ng-show="lg.status!=''">{{lg.status}}</div>
 				<button type="submit" class="btn btn-white btn-outline btn-lg btn-rounded" ng-click="submitted=true">Login</button>
 
 			</form>

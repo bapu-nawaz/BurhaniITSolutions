@@ -30,10 +30,22 @@ var app = angular.module('yapp', [
           controller: 'LoginCtrl'
         })
         .state('dashboard', {
-          url: '/dashboard',
+          url: '/dashboard/:id',
           parent: 'base',
           templateUrl: 'views/dashboard.html',
-          controller: 'DashboardCtrl'
+          controller: 'DashboardCtrl',
+          resolve: {
+            userDetails: ['$stateParams','config','Api',
+              function($stateParams, C, API){
+                return API.get(C.getUser($stateParams.id));
+              }
+            ],
+            childrenData: ['$stateParams','config','Api',
+              function($stateParams, C, API){
+                return API.get(C.getChildren($stateParams.id));
+              }
+            ]
+          }
         })
           .state('overview', {
             url: '/overview',
