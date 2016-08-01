@@ -24,3 +24,10 @@ In the source, we have the less files of Bootstrap attached and the variables ha
 ### Automation tools
 
 - [Gulp](http://gulpjs.com/)
+
+#### Debugging tips
+To use this app with xampp(etc) you will need to disable firewall permissions OR
+enable CORS (Cross-Origin-Request-Service).
+Or even make it simpler for one time use, open cmd as admin, navigate to Chrome where you can see chrome.exe file then execute:
+`chrome.exe --user-data-dir="C:/Chrome dev session" --disable-web-security`
+*ALOHA !!* this newly opened browser won't stop you.
