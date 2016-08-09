@@ -5,7 +5,7 @@ app.factory('config', [function(){
      *  Purpose: initialize variables for first use
      */
     function config() {
-        var url = "http://192.168.1.103:81";
+        var url = "http://192.168.1.100";
         var components = "/BITS/scripts/";
 
         this.loginURL = url + components + "getUserByMail.php?mail=";

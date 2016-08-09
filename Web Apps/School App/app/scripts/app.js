@@ -10,7 +10,9 @@
  */
 var app = angular.module('yapp', [
     'ui.router',
-    'ngAnimate'
+    'ui.bootstrap',
+    'ngAnimate',
+    'ngMaterial'
   ])
   .config(function($stateProvider, $urlRouterProvider) {
 
@@ -56,6 +58,6 @@ var app = angular.module('yapp', [
             url: '/reports',
             parent: 'dashboard',
             templateUrl: 'views/dashboard/reports.html'
-          });
+          })
 
   });
