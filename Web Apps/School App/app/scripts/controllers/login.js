@@ -21,6 +21,7 @@ app.controller('LoginCtrl', ['$scope', '$location', 'Api', 'config',
       var url = C.loginURL+$scope.lg.email;
       API.get(url)
          .then(function success (user) {
+              console.log("Login: ", user);
             if (user.id != 0) {
               if( user.pass != $scope.lg.pass ){
                 $scope.lg.status = "Error: Wrong password";
@@ -29,6 +30,7 @@ app.controller('LoginCtrl', ['$scope', '$location', 'Api', 'config',
               console.log("Correct Login: ", user);
             	$location.path('/dashboard/'+user.id+'/overview');             
             } else {
+              console.log("incorrect Login: ", user);
               $scope.lg.status = "Error: "+user.status;
             }
          }, function fail (reason) {
