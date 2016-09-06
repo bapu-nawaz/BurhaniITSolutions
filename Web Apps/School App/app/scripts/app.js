@@ -10,7 +10,7 @@
  */
 var app = angular.module('yapp', [
     'ui.router',
-    'ui.bootstrap',
+    // 'ui.bootstrap',
     'ngAnimate',
     'ngMaterial'
   ])

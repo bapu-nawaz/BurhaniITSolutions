@@ -30,7 +30,9 @@ app.controller('DashboardCtrl', ['$scope', '$state', '$location', 'Children', 'u
     			{"id": 2, "name": "Attendance Details", "icon": "glyphicon-calendar"},
     			{"id": 2, "name": "Home Work", "icon": "glyphicon-education"}
     		],
-    		"feesCounter": -1
+    		"weekDay" : [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ],
+    		"feesCounter": -1,
+    		"dialogContentClicked": false
     	};
 
 		/* FUNCTION DEFINITIONS */
@@ -70,19 +72,22 @@ app.controller('DashboardCtrl', ['$scope', '$state', '$location', 'Children', 'u
 	    $scope.checkDetails();
 	    $scope.fetchChildren();
 
+	    $scope.closeDialog = function(param) {
+	    	if( !param )
+	    		$scope.defaults.dialogContentClicked = true;
+	    	else if( $scope.defaults.dialogContentClicked ) 
+	    		$scope.defaults.dialogContentClicked = false;
+	    	else
+	    		$scope.closeModal();
+	    }
 
-	    $scope.subjects = [
-		    {"id":0, "name": "Maths", "teacher": "Mathematics Teacher"},
-		    {"id":1, "name": "Islamiat", "teacher": "Religion Teacher"},
-		    {"id":2, "name": "Urdu", "teacher": "Language Teacher"},
-		    {"id":3, "name": "English", "teacher": "Language Teacher"},
-		    {"id":4, "name": "Science", "teacher": "Science Teacher"}
-	    ];
-
-	    $scope.weekDay = [
-	    	"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
-	    ];
-	    /* DIALOG */
+	    $scope.isHoliday = function(param) {
+	    	var date = ($scope.defaults.date.start.getDay() + param)%7;
+	    	var day = $scope.defaults.weekDay[date];
+	    	if ( day == "Sunday" || day == "Saturday" )
+	    		return true;
+	    	return false;
+	    }
 
 	}
 ]);
