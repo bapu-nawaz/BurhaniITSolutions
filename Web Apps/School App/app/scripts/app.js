@@ -9,10 +9,8 @@
  * Main module of the application.
  */
 var app = angular.module('yapp', [
-    'ui.router',
+    'ui.router'
     // 'ui.bootstrap',
-    'ngAnimate',
-    'ngMaterial'
   ])
   .config(function($stateProvider, $urlRouterProvider) {
 
@@ -41,12 +39,12 @@ var app = angular.module('yapp', [
               function($stateParams, C, API){
                 return API.get(C.getUser($stateParams.id));
               }
-            ],
-            childrenData: ['$stateParams','config','Api',
-              function($stateParams, C, API){
-                return API.get(C.getChildren($stateParams.id));
+            ]/*,
+            childrenData: ['userDetails','config','Api',
+              function(userDetails, C, API){
+                return API.get(C.getChildren(userDetails.EMAIL));
               }
-            ]
+            ]*/
           }
         })
           .state('overview', {

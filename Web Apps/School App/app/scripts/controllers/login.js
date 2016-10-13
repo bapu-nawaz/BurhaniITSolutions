@@ -14,29 +14,33 @@ app.controller('LoginCtrl', ['$scope', '$location', 'Api', 'config',
 
     $scope.submit = function() {
 
-    	console.log("Email: ",$scope.lg);
+    	printText("LOCAL-USER:",$scope.lg);
     	if($scope.loginForm.$invalid){
     		return true;
     	}
       var url = C.loginURL+$scope.lg.email;
       API.get(url)
          .then(function success (user) {
-              console.log("Login: ", user);
-            if (user.id != 0) {
-              if( user.pass != $scope.lg.pass ){
+              printText("DB-USER:",user);
+            if (user.ID != 0) {
+              if( user.PASSWORD != $scope.lg.pass ){
                 $scope.lg.status = "Error: Wrong password";
                 return true;
               }
-              console.log("Correct Login: ", user);
-            	$location.path('/dashboard/'+user.id+'/overview');             
+              printText("Correct Login: ", user);
+            	$location.path('/dashboard/'+user.ID+'/overview');             
             } else {
-              console.log("incorrect Login: ", user);
+              printText("incorrect Login: ", user);
               $scope.lg.status = "Error: "+user.status;
             }
          }, function fail (reason) {
             $scope.lg.status = (reason==null) ? "Unknown Error" : reason;
       });
       return false;
+    }
+
+    var printText = function (tag, text) {
+      console.log("INFO:",tag,text);
     }
 
   }]);

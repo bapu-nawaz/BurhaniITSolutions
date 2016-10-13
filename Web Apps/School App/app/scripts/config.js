@@ -5,12 +5,15 @@ app.factory('config', [function(){
      *  Purpose: initialize variables for first use
      */
     function config() {
-        var url = "http://192.168.1.103";
-        var components = "/BITS/scripts/";
+        var ipAddress = "http://192.168.100.2:8000";
+        var components = "/BITS/scripts/MSA/";
 
-        this.loginURL = url + components + "getUserByMail.php?mail=";
-        this.userData = url + components + "getUserByID.php?id=";
-        this.children = url + components + "getChildrenByParentID.php?id=";
+        this.loginURL = ipAddress + components + "getParentDetailByMail.php?mail=";
+        this.userData = ipAddress + components + "getParentDetailByID.php?id=";
+        this.children = ipAddress + components + "getChildrenByParentMail.php?mail=";
+
+        // API File name for Activity Detail to be called alone (add 3 more)
+        this.activityDetailURL = ipAddress + components + "getChildrenActivityDetailResponsive.php?date=";
     };    
 
     config.prototype.login = function(param) {
@@ -26,6 +29,12 @@ app.factory('config', [function(){
     config.prototype.getChildren = function(param) {
         param = this.children + param;
         return param;
+    };
+
+    // Function to return appended date for AD (add 3 more)
+    config.prototype.getActivityDetail = function(param1, param2) {
+        var url = this.activityDetailURL + param1 + "&std=" + param2;
+        return url;
     };
 
     return new config();
