@@ -67,7 +67,6 @@ app.service('Api', ['$http', '$q', '$rootScope',function($http, $q, $rootScope) 
     **/
     Api.prototype.get = function(url) {
         
-        console.log("URL:",url);
         var deferred = $q.defer();
         $http.get(url)
             .success(function(data, status, headers, config) {

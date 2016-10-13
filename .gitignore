@@ -5,6 +5,7 @@
 .DS_Store
 /build
 /captures
+Web\ Apps/School\ App/dist/
 
 .idea/
 SchoolApp.iml

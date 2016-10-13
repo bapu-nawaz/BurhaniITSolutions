@@ -2,11 +2,11 @@
   <growl-notification ng-class="{showMe: showGrowlWarning}" class="growl-warning fading">Scroll Down Please.</growl-notification>
 </growl-notifications>
 <div>
-	<a ui-sref="reports" class="pull-right btn btn-primary btn-outline btn-rounded">Complains</a>
-	<h2>Dashboard<br/><small>Here you will see the list of your children registered in our school system.</small></h2>
+	<a ui-sref="reports" class="pull-right btn btn-primary btn-outline btn-rounded">Complain Or Application </a>
+	<h2 ng-click="printChild()">Dashboard<br/><small>Here you will see the list of your children registered in our school system.</small></h2>
 	<div class="jumbotron">
 		<div class="container">
-			<h1 data-toggle="modal" data-target="#testingModal1">Welcome!<br/>Mr/Mrs {{userData.name}}</h1>
+			<h1 data-toggle="modal" data-target="#testingModal1">Welcome!<br/>Mr/Mrs {{toCamelCase(userData.NAME)}}</h1>
 			&nbsp;
 			<table class="table" ng-hide="error.status">
 				<thead>
@@ -18,10 +18,11 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="child in children" data-ng-click="$parent.childName = child; $parent.showGrowlWarning = true" ng-class="{selectedChild: child.id==childName.id}" popover-placement="left" popover="scroll down">
-						<td>{{child.name}}</td>
-						<td>{{child.class}}</td>
-						<td>{{child.section}}</td>
+					<tr ng-repeat="child in children.data" data-ng-click="$parent.childName = child; $parent.showGrowlWarning = true; $parent.childSelected(child)" ng-class="{selectedChild: child.ID==childName.ID}" popover-placement="left" popover="scroll down">
+						<td>{{child.STUDENT}}</td>
+						<!-- <td>{{toCamelCase(child.STUDENT)}}</td> -->
+						<td>{{child.CLASS}}</td>
+						<td>{{child.SECTION}}</td>
 						<td><i class="glyphicon glyphicon-pencil"></i></td>
 					</tr>
 				</tbody>
@@ -31,6 +32,7 @@
 		</div>
 	</div>
 
+	<!-- four boxes that appear on child click -->
 	<div class="row" ng-show="childName!=''">
 		<div class="col-sm-3" ng-repeat="option in defaults.options" data-ng-click="childClicked(option.name)">
 			<div class="panel panel-default">
@@ -41,30 +43,36 @@
 			</div>
 		</div>
 	</div>
+
 </div>
 
 <div class="modalsTemplates">
-		<div id="testingModal1" class="modal fade bs-example-modal-md" ng-class="{modalVisibility: !defaults.modalClosed}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+		<div id="testingModal1" class="modal fade bs-example-modal-md" ng-class="{modalVisibility: !defaults.modalClosed}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" ng-click="closeDialog(true)">
       <div class="modal-dialog modal-md modalMargin">
-        <div class="modal-content modalContent">
+        <div class="modal-content modalContent" ng-click="closeDialog(false)">
           <i class="glyphicon glyphicon-remove closeDialog" ng-click="closeModal()"></i>
           <div class="modalTitle"><b>{{defaults.activityTitle}}</b></div>
           <div class="modalBody">
-            <div class="modalDetails">{{childName.name}} of Class {{childName.class}}-{{childName.section}} </div>
+            <div class="modalDetails">{{childName.STUDENT}} of Class {{childName.CLASS}}-{{childName.SECTION}} </div>
             <div class="modalReq Left">
             		<div ng-if="1">
 	                Select {{(defaults.activityTitle != 'Activity Report' && defaults.activityTitle != 'Home Work') ? "Start" : ""}} Date: <br/> 
-	                <input type="date" class="datepicker" ng-model="defaults.date.start">
+	                <input type="date" class="datepicker" ng-model="defaults.date.start" ng-change="onDateChangedListener()">
 	              </div>
             </div>
             <div class="modalReq Right">
-            		<div ng-if="defaults.activityTitle == 'Activity Report' || defaults.activityTitle == 'Home Work'">
+            	<div ng-if="defaults.activityTitle == 'Activity Report'">
 	                Select Subject: <br/>
-	                <select ng-model="defaults.subject" class="modalDropDown" ng-value="defaults.subject.name" ng-options="subject as subject.name for subject in subjects"></select>
-	              </div>
+	                <select ng-model="defaults.subject" class="modalDropDown" ng-value="defaults.subject.name" ng-options="subject as subject.COURSE for subject in childName.ActivityDetails" ng-change="courseDetailChanged()"></select>
+	            </div>
+            	<div ng-if="defaults.activityTitle == 'Home Work'">
+	                Select Subject: <br/>
+	                <select ng-model="defaults.subject" class="modalDropDown" ng-value="defaults.subject.name" ng-options="subject as subject.SUBJECT for subject in childName.DailyDiary" ng-change="courseDetailChanged()"></select>
+	            </div>
             		<div ng-if="defaults.activityTitle == 'Fees'">
-	                Select End Date: <br/> 
-	                <input type="date" class="datepicker" ng-model="defaults.date.end">
+	                Select End Date: <br/>
+
+				  <input type="date" class="datepicker" ng-model="defaults.date.end">
 	              </div>
 	              <div ng-if="defaults.activityTitle == 'Attendance Details'">
 									<ul class="statusList">
@@ -76,14 +84,24 @@
 	              </div>
             </div>
             <div class="modalResults">
-          		<div ng-if="(defaults.activityTitle == 'Activity Report' || defaults.activityTitle == 'Home Work') && defaults.subject != -1">
-	            	<span>Teacher Name: <b>{{defaults.subject.teacher}}</b></span><br/>
-	            	{{defaults.activityTitle}} for <b>{{defaults.date.start.toDateString()}}</b>
+            	<div ng-if="defaults.isLoading" class="loadingGif"><img src="images/loading.gif"></div>
+          		<div ng-if="(defaults.activityTitle == 'Activity Report') && defaults.subject != -1 && !defaults.isLoading">
+	            	{{defaults.activityTitle}} for <b>{{defaults.date.start.toDateString()}}</b><br/>
+	            	<span>Title: <b>{{defaults.subject.SUBJECT}}</b></span>
+	            	<br/><br/>
+	            	<p class="width-matchParent">{{defaults.subject.DETAIL}}</p>
+	            </div>
+          		<div ng-if="(defaults.activityTitle == 'Home Work') && defaults.subject != -1 && !defaults.isLoading">
+	            	{{defaults.activityTitle}} for <b>{{defaults.date.start.toDateString()}}</b><br/>
+	            	<span>Diary Title: <b>{{defaults.subject.TITLE}}</b></span>
+	            	<br/><br/>
+	            	<p>{{defaults.subject.DIARY}}</p>
 	            </div>
 	            <div ng-if="defaults.activityTitle == 'Fees'">
 	            &nbsp;
 								<accordion> 
-									<div class="panel-group">
+
+                                		<div class="panel-group">
 										<div class="panel panel-default" ng-repeat="t in getTimes(defaults.date.end.getMonth() - defaults.date.start.getMonth()) track by $index">
 								  		<div class="panel-heading" ng-click="(defaults.feesCounter==$index) ? defaults.feesCounter=-1 : defaults.feesCounter=$index">
 								    		<h4 class="panel-title">
@@ -98,7 +116,7 @@
 									  			<ul class="list-group">
 									  				<li class="list-group-item">
 											  			<span class="bold"> Voucher no. </span>
-											  			<i class="feesDetail">Voucher no.</i>
+											  			<i class="feesDetail">Voucher no22.</i>
 											  		</li>
 											  		<li class="list-group-item">
 											  			<span class="bold"> Fees Date </span>
@@ -146,10 +164,10 @@
 	            		</thead>
 	            		<tbody>
 	            			<tr ng-repeat="t in getTimes(7) track by $index" 
-	            			ng-class="{info: weekDay[(defaults.date.start.getDay() + $index)%7] == 'Sunday' || weekDay[(defaults.date.start.getDay() + $index)%7] == 'Saturday', success:  $index == 0, danger: $index == 1, warning: $index == 2}">
+	            			ng-class="attendanceStatus($index)">
 	            				<td>{{defaults.date.start.getDate()+$index}}</td>
-	            				<td>{{weekDay[(defaults.date.start.getDay() + $index)%7]}}</td>
-	            				<td>status</td>
+	            				<td>{{defaults.weekDay[(defaults.date.start.getDay() + $index)%7]}}</td>
+	            				<td>{{children.data[0].Attendance[0][dayName($index+1)]}}</td>
 	            			</tr>
 	            		</tbody>
 	            	</table>
