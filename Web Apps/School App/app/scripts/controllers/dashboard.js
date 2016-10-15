@@ -22,7 +22,8 @@ app.controller('DashboardCtrl', ['$scope', '$state', '$location', 'Children', 'u
     		"activityTitle": "", 
     		"date":  {
     			"start": new Date(),
-    			"end": new Date()
+    			"end": new Date(),
+    			"selectedDate": null
     		},
     		"subject": -1,
     		"options": [
@@ -57,8 +58,10 @@ app.controller('DashboardCtrl', ['$scope', '$state', '$location', 'Children', 'u
 	    }
 
 	    $scope.childClicked = function(param) {
+	    	printText("Child Clicked for",param);
 	    	$scope.defaults.modalClosed = false;
 	    	$scope.defaults.activityTitle = param;
+	    	$scope.defaults.date.selectedDate = $scope.defaults.date.start;
 	    }
 
 	    $scope.checkDetails = function() {
@@ -95,6 +98,7 @@ app.controller('DashboardCtrl', ['$scope', '$state', '$location', 'Children', 'u
 	    	return false;
 	    }
 
+
 	    /* Start Programming here */
     	$scope.checkDetails();
 	    $scope.fetchChildren();
@@ -102,12 +106,23 @@ app.controller('DashboardCtrl', ['$scope', '$state', '$location', 'Children', 'u
 	    $scope.toCamelCase = function(str) {
 	    	if( str == null )
 	    		return "";
-
+	    	if( str.split(" ").length > 1 ) {
+	    		return constructedCamelCase(str.split(" "));
+	    	}
 	    	str = str.toLowerCase();
 		  	return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function(letter, index) {
 		    	return index != 0 ? letter.toLowerCase() : letter.toUpperCase();
 		  	}).replace(/\s+/g, '');
 	    }
+	    var constructedCamelCase = function(array) {
+	    	var leftOverArray = [];
+	    	for( var arrayCounter=1; arrayCounter<array.length; arrayCounter++ )
+	    		leftOverArray.push(array[arrayCounter]);
+	    	if( leftOverArray.length>0 )
+		    	return $scope.toCamelCase(array[0]) + " " + constructedCamelCase(leftOverArray);
+		    return $scope.toCamelCase(array[0]);
+	    }
+
 	    var data = $scope.children;
 	    printText("CHILDREN",data[0]);
 	    // printText("CHILDREN",data.$$state);
@@ -124,6 +139,11 @@ app.controller('DashboardCtrl', ['$scope', '$state', '$location', 'Children', 'u
 	    	printText("Click",$scope.children.data[0][0]);
 	    }
 
+
+       //$scope.feeDetails = function ()
+
+
+
 	    $scope.attendanceStatus = function (index) {
 	    	// {info: isHoliday($index), success:  $index == 0, danger: $index == 1, warning: $index == 2}
 	    	if ( $scope.isHoliday(index) )
@@ -134,8 +154,11 @@ app.controller('DashboardCtrl', ['$scope', '$state', '$location', 'Children', 'u
  
 
 	    	var today = $scope.dayName(index);
-	    	printText("LOOP",today);
-	    	var attendance = $scope.children.data[0].Attendance[0][today];
+	    	var attendance = "unknown";
+	    	if( $scope.children.data[0].Attendance[0] != null )
+		    	attendance = $scope.children.data[0].Attendance[0][today];
+
+	    	printText("LOOP: "+today, attendance);
 	    		  
 	    	   	switch(attendance) {
 
@@ -147,12 +170,12 @@ app.controller('DashboardCtrl', ['$scope', '$state', '$location', 'Children', 'u
 	    		case "a":
 	    			return "danger";
 
-	    		case "L":
-	    		case "l":
+	    		case "H":
+	    		case "h":
 	    			return "warning";
 
 	    		default: 
-	    			return "";  
+	    			return "noColor";  
 
 	    		}
       
@@ -166,23 +189,43 @@ app.controller('DashboardCtrl', ['$scope', '$state', '$location', 'Children', 'u
 
 	    $scope.onDateChangedListener = function() {
 	    	var selectedDate = formattedDate($scope.defaults.date.start);
-
 	    	switch($scope.defaults.activityTitle) {
 	    		case "Activity Report" :
+	    			$scope.defaults.isLoading = true;
 	    			$api.get(C.getActivityDetail(selectedDate,$scope.childName.ID))
 	    				.then(function(response){
 	    					// onSuccess, change variables as required ()
 	    					$scope.childName.ActivityDetails = response;
+	    					$scope.defaults.isLoading = false;
 	    				});
 	    			break;
 	    		case "Home Work" :
+	    			$scope.defaults.isLoading = true;
+	    			$api.get(C.getHomeWork(selectedDate,$scope.childName.ID))
+	    				.then(function(response){
+	    					// onSuccess, change variables as required ()
+	    					$scope.childName.DailyDiary = response;
+	    					$scope.defaults.isLoading = false;
+	    				});
 	    			break;
 	    		case "Fees" :
 	    			break;
 	    		case "Attendance Details" :
+	    			if( $scope.defaults.date.selectedDate.getMonth() != $scope.defaults.date.start.getMonth() ) {
+	    				$scope.defaults.isLoading = true;
+	    				$scope.defaults.date.start.setDate(1);
+	    				selectedDate = formattedDate($scope.defaults.date.start);
+	    				$api.get(C.getAttendanceDetail(selectedDate,$scope.childName.ID))
+	    				.then(function(response){
+	    					// onSuccess, change variables as required ()
+	    					$scope.children.data[0].Attendance = response;
+	    					$scope.defaults.isLoading = false;
+	    				});
+	    			}
 	    			break;
 	    		default:
 	    	}
+	    	$scope.defaults.date.selectedDate = $scope.defaults.date.start;
 	    }
 
 	    var formattedDate = function(param) {
@@ -195,6 +238,17 @@ app.controller('DashboardCtrl', ['$scope', '$state', '$location', 'Children', 'u
 
 	    $scope.childSelected = function(param) {
 	    	$scope.childName = param;
+	    }
+
+	    $scope.sendApplication = function() {
+	    	$scope.defaults.application['student'] = $scope.childName.ID;
+
+	    	$api.get(C.sendApplication($scope.defaults.application))
+	    	.then(function(response){
+	    		$scope.closeModal();
+	    		$scope.childName.ApplicationDetails.push(response);
+	    	});
+	    	
 	    }
 	}
 ]);

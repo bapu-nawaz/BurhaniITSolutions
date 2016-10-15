@@ -4,29 +4,63 @@
 	<span class="glyphicon glyphicon-education bg-fade"></span>
 	<div class="jumbotron">
 		<div class="container">
-			<h1>We will add forms here</h1>
-			
-	<body>
-
-
-<body ng-app="">
-<p>Write the problem your are being faced:</p>
- 
-<form name="myForm">
-<!-- <span class="valueItems"><input name="myInput" ng-model="myInput" required></span>  -->
-    <textarea  class="form-control" ng-model="feedbackData">Feedback</textarea> 
-    {{feedbackData}}
-</form>
-
-
-
-</body>
-
-
-
-			<!-- <p>
-				<a class="btn btn-primary btn-lg btn-outline btn-rounded">Learn more</a>
-			</p> -->
+			<h2>Previous Applications</h2>
+			<i ng-click="childClicked('Create Application')" class="glyphicon glyphicon-edit floatRight" ng-if="childName!=''"></i>
+			<table class="table applicationsTable" ng-if="childName!=''">
+				<thead>
+					<tr>
+						<th class="appDate">Date</th>
+						<th class="appTo">Recepient</th>
+						<th class="appSub">Subject</th>
+						<th class="appMsg">Message</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="application in childName.ApplicationDetails">
+						<td>{{application.EDATE}}</td>
+						<td>{{application.TOO}}</td>
+						<td>{{application.SUBJECT}}</td>
+						<td class="appMsg">{{application.RMKS}}</td>
+					</tr>
+				</tbody>
+			</table>
+			<div ng-if="childName==''">Please select a child to display Applications.</div>
 		</div>
 	</div>
+</div>
+
+<div class="modalsTemplates">
+	<div id="testingModal1" class="modal fade bs-example-modal-md" ng-class="{modalVisibility: !defaults.modalClosed}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" ng-click="closeDialog(true)">
+		<div class="modal-dialog modal-md modalMargin">
+        	<div class="modal-content modalContent" ng-click="closeDialog(false)">
+          		<i class="glyphicon glyphicon-remove closeDialog" ng-click="closeModal()"></i>
+          		<div class="modalTitle"><b>{{defaults.activityTitle}}</b></div>
+          		<div class="modalBody">
+            		<div class="modalDetails">
+            			{{childName.STUDENT}} of Class {{childName.CLASS}}-{{childName.SECTION}}
+            		</div>
+            		<div class="applicationReq">
+	            		<div>
+			                To: <br/> 
+			                <input type="text" ng-model="defaults.application.recepient">
+			              </div>
+		            </div>
+            		<div class="applicationReq">
+	            		<div>
+			                Subject: <br/> 
+			                <input type="text" class="subject" ng-model="defaults.application.subject">
+			              </div>
+		            </div>
+            		<div class="applicationReq">
+	            		<div>
+			                Application Message: <br/> 
+			                <textarea type="text" ng-model="defaults.application.message">
+			                </textarea>
+			              </div>
+		            </div>
+		            <button class="sendApplication" ng-click="sendApplication()">Send</button>
+            	</div>
+            </div>
+        </div>
+    </div>
 </div>

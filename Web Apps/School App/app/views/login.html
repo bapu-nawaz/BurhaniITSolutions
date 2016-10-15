@@ -3,11 +3,11 @@ Inspired by http://dribbble.com/shots/917819-iPad-Calendar-Login?list=shots&sort
 -->
 <div class="login-page">
 	<div class="row">
-		<div class="col-md-4 col-lg-4 col-md-offset-4 col-lg-offset-4" ng-init="submitted=false">
+		<div class="col-md-4 col-lg-4 col-md-offset-4 col-lg-offset-4" ng-init="submitted=false; forgotPasswordClick=false">
 			<i class="glyphicon glyphicon-tree-deciduous schoolIcon"></i>
         	<!-- <img src="images/flat-avatar.png" class="user-avatar" /> -->
 			<h1>Marium School Academy <small>&copy;</small></h1>
-			<form role="form" ng-submit="submit()" name="loginForm" novalidate>
+			<form role="form" name="loginForm" novalidate>
 
 				<div class="form-content">
 					<div class="form-group">
@@ -15,11 +15,12 @@ Inspired by http://dribbble.com/shots/917819-iPad-Calendar-Login?list=shots&sort
 					</div>
 
 					<div class="form-group">
-						<input type="password" class="form-control input-underline input-lg" id="" placeholder="Password" ng-class="{error: submitted && loginForm.loginPassword.$invalid}" ng-model="lg.pass" name="loginPassword" required ng-change="lg.status=''">
+						<input type="password" class="form-control input-underline input-lg" id="" placeholder="Password" ng-class="{error: submitted && loginForm.loginPassword.$invalid && !forgotPasswordClick}" ng-model="lg.pass" name="loginPassword" required ng-change="lg.status=''">
 					</div>
 				</div>
-				<div class="responseStatus" ng-show="lg.status!=''">{{lg.status}}</div>
-				<button type="submit" class="btn btn-white btn-outline btn-lg btn-rounded" ng-click="submitted=true">Login</button>
+				<div class="responseStatus" ng-class="{successMessage: forgotPasswordClick }" ng-show="lg.status!=''">{{lg.status}}</div>
+				<button type="submit" class="btn btn-white btn-outline btn-lg btn-rounded" ng-click="submit()">Login</button>
+				<button class="btn btn-white btn-outline btn-lg btn-rounded" ng-click="forgotPassword()">Forgot Password</button>
 
 			</form>
 

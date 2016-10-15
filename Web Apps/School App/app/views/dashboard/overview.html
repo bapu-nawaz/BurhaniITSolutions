@@ -19,8 +19,7 @@
 				</thead>
 				<tbody>
 					<tr ng-repeat="child in children.data" data-ng-click="$parent.childName = child; $parent.showGrowlWarning = true; $parent.childSelected(child)" ng-class="{selectedChild: child.ID==childName.ID}" popover-placement="left" popover="scroll down">
-						<td>{{child.STUDENT}}</td>
-						<!-- <td>{{toCamelCase(child.STUDENT)}}</td> -->
+						<td>{{toCamelCase(child.STUDENT)}}</td>
 						<td>{{child.CLASS}}</td>
 						<td>{{child.SECTION}}</td>
 						<td><i class="glyphicon glyphicon-pencil"></i></td>
@@ -55,7 +54,7 @@
           <div class="modalBody">
             <div class="modalDetails">{{childName.STUDENT}} of Class {{childName.CLASS}}-{{childName.SECTION}} </div>
             <div class="modalReq Left">
-            		<div ng-if="1">
+            		<div ng-if="defaults.activityTitle != 'Fees'">
 	                Select {{(defaults.activityTitle != 'Activity Report' && defaults.activityTitle != 'Home Work') ? "Start" : ""}} Date: <br/> 
 	                <input type="date" class="datepicker" ng-model="defaults.date.start" ng-change="onDateChangedListener()">
 	              </div>
@@ -69,15 +68,10 @@
 	                Select Subject: <br/>
 	                <select ng-model="defaults.subject" class="modalDropDown" ng-value="defaults.subject.name" ng-options="subject as subject.SUBJECT for subject in childName.DailyDiary" ng-change="courseDetailChanged()"></select>
 	            </div>
-            		<div ng-if="defaults.activityTitle == 'Fees'">
-	                Select End Date: <br/>
-
-				  <input type="date" class="datepicker" ng-model="defaults.date.end">
-	              </div>
 	              <div ng-if="defaults.activityTitle == 'Attendance Details'">
 									<ul class="statusList">
 										<li>Holiday <i class="attendanceColor glyphicon glyphicon-stop infoStatus"></i></li>
-										<li>Late <i class="attendanceColor glyphicon glyphicon-stop warningStatus"></i></li>
+										<li>Half Day <i class="attendanceColor glyphicon glyphicon-stop warningStatus"></i></li>
 										<li>Absent <i class="attendanceColor glyphicon glyphicon-stop dangerStatus"></i></li>
 										<li>Present <i class="attendanceColor glyphicon glyphicon-stop successStatus"></i></li>
 									</ul>
@@ -85,28 +79,34 @@
             </div>
             <div class="modalResults">
             	<div ng-if="defaults.isLoading" class="loadingGif"><img src="images/loading.gif"></div>
-          		<div ng-if="(defaults.activityTitle == 'Activity Report') && defaults.subject != -1 && !defaults.isLoading">
+          		<div ng-if="(defaults.activityTitle == 'Activity Report') && defaults.subject != -1 && !defaults.isLoading && childName.ActivityDetails.length > 0">
 	            	{{defaults.activityTitle}} for <b>{{defaults.date.start.toDateString()}}</b><br/>
 	            	<span>Title: <b>{{defaults.subject.SUBJECT}}</b></span>
 	            	<br/><br/>
 	            	<p class="width-matchParent">{{defaults.subject.DETAIL}}</p>
 	            </div>
-          		<div ng-if="(defaults.activityTitle == 'Home Work') && defaults.subject != -1 && !defaults.isLoading">
+          		<div ng-if="(defaults.activityTitle == 'Home Work') && defaults.subject != -1 && !defaults.isLoading && childName.DailyDiary.length > 0">
 	            	{{defaults.activityTitle}} for <b>{{defaults.date.start.toDateString()}}</b><br/>
 	            	<span>Diary Title: <b>{{defaults.subject.TITLE}}</b></span>
 	            	<br/><br/>
 	            	<p>{{defaults.subject.DIARY}}</p>
+	            </div>
+	            <div ng-if="(defaults.activityTitle == 'Activity Report') && childName.ActivityDetails.length == 0">
+	            	No Activity Report Added for this date.
+	            </div>
+	            <div ng-if="(defaults.activityTitle == 'Home Work') && childName.DailyDiary.length == 0">
+	            	No Home Work Added for this date.
 	            </div>
 	            <div ng-if="defaults.activityTitle == 'Fees'">
 	            &nbsp;
 								<accordion> 
 
                                 		<div class="panel-group">
-										<div class="panel panel-default" ng-repeat="t in getTimes(defaults.date.end.getMonth() - defaults.date.start.getMonth()) track by $index">
+										<div class="panel panel-default" ng-repeat="singleFee in childName.fees">
 								  		<div class="panel-heading" ng-click="(defaults.feesCounter==$index) ? defaults.feesCounter=-1 : defaults.feesCounter=$index">
 								    		<h4 class="panel-title">
 								      		<a href="" class="accordion-toggle">
-								      			<span >Month</span>
+								      			<span >{{singleFee.FEESDATED.split("-")[1]}}</span>
 								      		</a>
 								    		</h4>
 								  		</div>
@@ -116,36 +116,20 @@
 									  			<ul class="list-group">
 									  				<li class="list-group-item">
 											  			<span class="bold"> Voucher no. </span>
-											  			<i class="feesDetail">Voucher no22.</i>
+											  			<i class="feesDetail">{{singleFee.VOUCHER_NO}}</i>
 											  		</li>
 											  		<li class="list-group-item">
 											  			<span class="bold"> Fees Date </span>
-											  			<i class="feesDetail">Fees Date</i>
-											  		</li>
-											  		<li class="list-group-item">
-											  			<span class="bold"> Month </span>
-											  			<i class="feesDetail">Month</i>
-											  		</li>
-											  		<li class="list-group-item">
-											  			<span class="bold"> Concession Amount </span>
-											  			<i class="feesDetail">Concession Amount</i>
+											  			<i class="feesDetail">{{singleFee.FEESDATED}}</i>
 											  		</li>
 											  		<li class="list-group-item">
 											  			<span class="bold"> Total Fees </span>
-											  			<i class="feesDetail">Total Fees</i>
+											  			<i class="feesDetail">{{singleFee.TOTALFEES}}</i>
 											  		</li>
 											  		<li class="list-group-item">
 											  			<span class="bold"> Received Date </span>
-											  			<i class="feesDetail">Received Date</i>
+											  			<i class="feesDetail">{{singleFee.RECEIVEDATED}}</i>
 											  		</li>
-											  		<li class="list-group-item">
-											  			<span class="bold"> Received Fees </span>
-											  			<i class="feesDetail">Received Fees</i>
-											  		</li>
-											  		<li class="list-group-item">
-											  			<span class="bold"> Received Penalty </span>
-											  			<i class="feesDetail">Received Penalty</i>
-									  				</li>
 									  			</ul>
 									  		</div>
 								  		</div>
@@ -157,17 +141,17 @@
 	            	<table class="table table-bordered">
 	            		<thead>
 	            			<tr>
-	            				<th>Dates</th>
+	            				<th class="halfWidth">Dates</th>
 	            				<th>Days</th>
-	            				<th>Status</th>
+	            				<th class="halfWidth">Status</th>
 	            			</tr>
 	            		</thead>
 	            		<tbody>
 	            			<tr ng-repeat="t in getTimes(7) track by $index" 
-	            			ng-class="attendanceStatus($index)">
+	            			ng-class="attendanceStatus($index)" ng-hide="(defaults.date.start.getDate() + $index) > 31">
 	            				<td>{{defaults.date.start.getDate()+$index}}</td>
 	            				<td>{{defaults.weekDay[(defaults.date.start.getDay() + $index)%7]}}</td>
-	            				<td>{{children.data[0].Attendance[0][dayName($index+1)]}}</td>
+	            				<td>{{children.data[0].Attendance[0][dayName(defaults.date.start.getDate() + $index)]}}</td>
 	            			</tr>
 	            		</tbody>
 	            	</table>

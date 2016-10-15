@@ -14,6 +14,8 @@ app.controller('LoginCtrl', ['$scope', '$location', 'Api', 'config',
 
     $scope.submit = function() {
 
+      $scope.submitted = true;
+      $scope.forgotPasswordClick = false;
     	printText("LOCAL-USER:",$scope.lg);
     	if($scope.loginForm.$invalid){
     		return true;
@@ -41,6 +43,17 @@ app.controller('LoginCtrl', ['$scope', '$location', 'Api', 'config',
 
     var printText = function (tag, text) {
       console.log("INFO:",tag,text);
+    }
+
+    $scope.forgotPassword = function() {
+      $scope.submitted = true;
+      $scope.forgotPasswordClick = true;
+      if( $scope.loginForm.loginEmail.$invalid )
+        return true;
+      API.get(C.forgotPassword($scope.lg.email))
+         .then(function(response){
+            $scope.lg.status = response.message;
+         });
     }
 
   }]);

@@ -9,9 +9,15 @@ angular.module('yapp').factory('Children', [function(){
     };
     
     Children.prototype.setData = function (data) {
-    	this.data.push(data[0]);
+    	for (var i = data.length - 1; i >= 0; i--) {
+            this.addChild(data[i]);
+        }
     	console.log("SET DATA:",data);
     }
+
+    Children.prototype.addChild = function(child) {
+        this.data.push(child);
+    };
 
     return Children;
 

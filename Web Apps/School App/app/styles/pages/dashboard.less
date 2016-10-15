@@ -261,6 +261,24 @@
         line-height: 40px;
       }
 
+      .applicationReq {
+        padding: 15px;
+
+        textarea {
+          width: 545px;
+          height: 100px;
+          max-width: 545px;
+          max-height: 100px;
+        }
+
+        input {
+          width: 300px;
+        }
+        input.subject {
+          width: 450px;
+        }
+      }
+
       input.datepicker {
         border-radius: 5px;
         margin-left: 5px;
@@ -353,17 +371,20 @@
         padding: 8px;
       }
 
-      .infoStatus {
+      .infoStatus { /* blue */
         color: #d9edf7;
       }
-      .warningStatus {
+      .warningStatus { /* yellow */
         color: #fcf8e3;
       }
-      .dangerStatus {
+      .dangerStatus { /* red */
         color: #f2dede;
       }
-      .successStatus {
+      .successStatus { /* green */
         color: #dff0d8;
+      }
+      .noColorStatus { /* transparent */
+        color: rgba(250, 0, 0, 0);
       }
     }
     growl-notification.growl-warning {
@@ -394,3 +415,89 @@
       max-width: 600px;
       word-wrap: break-word;
     }
+table.table {
+  thead tr {
+    th {
+      text-align: center;
+    }
+    
+    th.halfWidth {
+      width: 20%;
+    }
+  }
+
+  tbody tr td {
+    text-align: center;
+  }
+}
+
+table.table.applicationsTable {
+  margin-top: 50px;
+  table-layout: fixed;
+  thead tr {
+    th.appDate { width: 15%; }
+    th.appTo, th.appSub { width: 20%; }
+    th { overflow: hidden; }
+  }
+
+  tbody tr {
+    td.appMsg {
+      text-align: left;
+
+    }
+  }
+}
+
+i.floatRight {
+  float: right;
+  font-size: 30px;
+}
+
+
+    @media (max-width: 768px) {
+      .modalBody {
+        height: 400px;
+        overflow-x: scroll;
+      }
+
+      input.datepicker {
+        max-width: 120px;
+      }
+
+      .modalDropDown {
+        min-height: 40px;
+        min-width: 120px;
+      }
+
+      .modalReq {
+        white-space: nowrap;
+      }
+
+      table.table tbody tr td {
+        overflow: hidden;
+      }
+
+      .modalContent {
+        top: 0px !important;
+      }
+    }
+
+    @media (max-height: 500px) {
+      .modalContent {
+        top: -110px !important;
+        max-width: 650px;
+      }
+
+      .modalBody {
+        max-height: 240px;
+      }
+    }
+
+button.sendApplication {
+    background: #3ca2e0;
+    color: #FFF;
+    padding: 8px 15px 8px 15px;
+    border-radius: 20px;
+    font-size: 15px;
+    margin-left: 15px;
+}

@@ -38,7 +38,7 @@ app.service('Api', ['$http', '$q', '$rootScope',function($http, $q, $rootScope) 
             method: 'POST',
             url: url,
             // headers: {'Content-Type': 'multipart/form-data'},
-            headers: {'Content-Type': undefined},
+            headers: {'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'},
             data: data,
             transformRequest: function (data, headersGetter) {
                 var formData = new FormData();
