@@ -76,7 +76,7 @@
 
     @media (max-width: 768px) {
       .modalBody {
-        height: 400px;
+        height: 350px;
         overflow-x: scroll;
       }
 
@@ -99,18 +99,28 @@
 
       .modalContent {
         top: 0px !important;
+        height: 250px;
+        overflow-x: scroll;
       }
     }
 
     @media (max-height: 500px) {
       .modalContent {
-        top: -110px !important;
+        top: -70px !important;
         max-width: 650px;
       }
 
       .modalBody {
-        max-height: 240px;
+        height: 200px;
+        max-height: 200px;
+        overflow-x: scroll;
       }
+
+      .modalResults {
+        max-height: 100px;
+        overflow: scroll;
+      }
+
     }
 
     .nav > li > a:hover, .nav > li > a:focus {
@@ -453,45 +463,6 @@ i.floatRight {
   font-size: 30px;
 }
 
-
-    @media (max-width: 768px) {
-      .modalBody {
-        height: 400px;
-        overflow-x: scroll;
-      }
-
-      input.datepicker {
-        max-width: 120px;
-      }
-
-      .modalDropDown {
-        min-height: 40px;
-        min-width: 120px;
-      }
-
-      .modalReq {
-        white-space: nowrap;
-      }
-
-      table.table tbody tr td {
-        overflow: hidden;
-      }
-
-      .modalContent {
-        top: 0px !important;
-      }
-    }
-
-    @media (max-height: 500px) {
-      .modalContent {
-        top: -110px !important;
-        max-width: 650px;
-      }
-
-      .modalBody {
-        max-height: 240px;
-      }
-    }
 
 button.sendApplication {
     background: #3ca2e0;

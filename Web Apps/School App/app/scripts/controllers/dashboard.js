@@ -22,7 +22,7 @@ app.controller('DashboardCtrl', ['$scope', '$state', '$location', 'Children', 'u
     		"activityTitle": "", 
     		"date":  {
     			"start": new Date(),
-    			"end": new Date(),
+    			"end"  : new Date(),
     			"selectedDate": null
     		},
     		"subject": -1,

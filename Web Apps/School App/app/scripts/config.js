@@ -5,7 +5,7 @@ app.factory('config', [function(){
      *  Purpose: initialize variables for first use
      */
     function config() {
-        var ipAddress = "http://192.168.100.22:8000";
+        var ipAddress = "http://110.34.35.224:3001/";
         var components = "/BITS/scripts/MSA/";
 
         this.loginURL = ipAddress + components + "getParentDetailByMail.php?mail=";
@@ -22,19 +22,21 @@ app.factory('config', [function(){
     };    
 
     config.prototype.login = function(param) {
-        return this.getConstructedURL( this.loginURL, param);
+        return this.constructURL( this.loginURL, param);
     };
 
+
+
     config.prototype.getUser = function(param) {
-        return this.getConstructedURL( this.userData, param);
+        return this.constructURL( this.userData, param);
     };
 
     config.prototype.getChildren = function(param) {
-        return this.getConstructedURL( this.children, param);
+        return this.constructURL( this.children, param);
     };
 
     config.prototype.forgotPassword = function(param) {
-        return this.getConstructedURL( this.forgotPasswordURL, param);
+        return this.constructURL( this.forgotPasswordURL, param);
     };
 
     // Function to return appended date for AD (add 3 more)
@@ -54,7 +56,7 @@ app.factory('config', [function(){
         url = url + param1 + "&std=" + param2;
         return url;
     };
-    config.prototype.getConstructedURL = function(url, param) {
+    config.prototype.constructURL = function(url, param) {
         url = url + param;
         return url;
     };
